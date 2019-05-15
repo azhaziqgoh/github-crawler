@@ -3,18 +3,18 @@
     <b-row>
       <b-col md="8" sm="12">
         <div class="search-result-description">
-          <a href="javacript:void(0)">facebook/react</a>
-          <p>A declarative, efficient, and flexible Javascript library for building user interfac asjkdasjkd akjsdhaksjdhjkasd askdjhasdjka asdjkahsdkjashdjk asjkhdakjsdsa kajsdhkjasdh es</p>
-          <p>Updated on Tue Jul 03 2018</p>
+          <a href="javascript:void(0)" @click="onClickUrl(searchItemDetail.url)">{{ searchItemDetail.name }}</a>
+          <p>{{ searchItemDetail.description }}</p>
+          <p>{{ searchItemDetail.updated | dateConvert }}</p>
         </div>
       </b-col>
       <b-col md="2" sm="6">
         <i><font-awesome-icon icon="circle"></font-awesome-icon></i>
-        Javascript
+        {{ searchItemDetail.language }}
       </b-col>
       <b-col md="2" sm="6">
         <i><font-awesome-icon icon="star"></font-awesome-icon></i>
-        105262
+        {{ searchItemDetail.starCount }}
       </b-col>
     </b-row>    
   </div>
@@ -23,10 +23,34 @@
 <script>
 export default {
   name: 'SearchItem',
+  props: {
+    searchItemDetail: {
+      type: Object,
+      required: true
+    }
+  },
   data(){
     return {}
   },
-  methods: {}
+  methods: {
+    /**
+     * @param {string} url repo to url
+     * 
+     * @description function call to open new tab for repo url
+     */
+    onClickUrl(url){
+      window.open(url,"_blank");
+    }
+  },
+  filters: {
+    dateConvert: function(val){
+      let date = new Date(val),
+      dayArray = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+      monthArray = ['January','February','March','April','May','Jun','July','August','September','October','November','December'];
+
+      return `Updated on ${dayArray[date.getDay()]} ${monthArray[date.getMonth()]} ${date.getDate()} ${date.getFullYear()}`
+    }
+  }
 }
 </script>
 

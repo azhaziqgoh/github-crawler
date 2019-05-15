@@ -13,13 +13,16 @@
           <div class="search-input-container">
             <search-input @search-keyword="onEmitSearchKeyword"></search-input>
           </div>
-          <p class="search-result-count">500 Search Results</p>
-          <search-item></search-item>
+          <p class="search-result-count">{{ totalReposCount }} Search Results</p>
+          <div v-for="repo in repos" :key="repo.id">
+            <search-item :search-item-detail="repo"></search-item>
+          </div>
           <b-pagination
             v-model="currentPage"
-            :total-rows="rows"
-            :per-page="perPage"
+            :total-rows="totalReposCount"
+            :per-page="pageSize"
             align="center"
+            @change="onPageChange"
           ></b-pagination>
         </div>
       </b-col>
@@ -31,6 +34,7 @@
 // @ is an alias to /src
 import SearchInput from '@/components/SearchInput.vue';
 import SearchItem from '@/components/SearchItem.vue';
+import SearchServices from '@/services/search-services.js';
 
 export default {
   name: 'home',
@@ -41,8 +45,10 @@ export default {
   data() {
     return {
       searchKeyword: '',
-      rows: 100,
-      perPage: 10
+      totalReposCount: 0,
+      pageSize: 10,
+      currentPage: 1,
+      repos: []
     }
   },
   methods: {
@@ -53,7 +59,18 @@ export default {
      * 
      *  */
     onEmitSearchKeyword(val){
-      this.searchKeyword = val;
+      this.$data.searchKeyword = val;
+      this.executeSearch();
+    },
+    executeSearch(){
+      SearchServices.getRepo(this.$data.currentPage,this.$data.pageSize,this.$data.searchKeyword).then((res)=>{
+        this.$data.totalReposCount = res.totalReposCount;
+        this.$data.repos = res.repos;
+      })
+    },
+    onPageChange(val){
+      this.$data.currentPage = val;
+      this.executeSearch();
     }
   }
 }
