@@ -25,6 +25,7 @@
               :per-page="pageSize"
               :hide-goto-end-buttons="true"
               align="center"
+              class="search-pagination"
               @change="onPageChange"
             ></b-pagination>
           </template>

@@ -16,16 +16,21 @@
 }
 
 //Counter styling for bootstrap vue pagination component
-.page-item {
-  margin-left: 5px;
-  margin-right: 5px;
+.search-pagination {
+  margin-top: 15px;
+  
+  .page-item {
+    margin-left: 5px;
+    margin-right: 5px;
 
-  &[role=separator]{
-    .page-link {
-      border: none;
+    &[role=separator]{
+      .page-link {
+        border: none;
+      }
     }
   }
 }
+
 
 //Custom fluover alert
 .alert.flyover-alert {
