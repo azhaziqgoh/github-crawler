@@ -22,23 +22,35 @@ async function getRepo(currentPage,pageSize,searchKeyword){
     },
     url = "https://api.github.com/search/repositories"
     
-    let results = await axios.get(url,config);
+    //Try catch block to handle error
+    try {
+        let results = await axios.get(url,config);
 
-    results.data.items.forEach(item=>{
-        let srm = new SearchResultModel(item.id,
-                                        item.name,
-                                        item.html_url,
-                                        item.description,
-                                        item.updated_at,
-                                        item.language,
-                                        item.stargazers_count);
-        
-        listsOfRepo.push(srm);
-    });
+        results.data.items.forEach(item=>{
+            let srm = new SearchResultModel(item.id,
+                                            item.name,
+                                            item.html_url,
+                                            item.description,
+                                            item.updated_at,
+                                            item.language,
+                                            item.stargazers_count);
+            
+            listsOfRepo.push(srm);
+        });
 
-    return {
-        totalReposCount: results.data.total_count,
-        repos: listsOfRepo 
+        return {
+            totalReposCount: results.data.total_count,
+            repos: listsOfRepo,
+            message: 'Success'  
+        }
+
+    } catch (e){
+
+        return {
+            totalReposCount: 0,
+            repos: listsOfRepo,
+            message: 'Error' 
+        }
     }
 }
 

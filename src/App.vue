@@ -11,7 +11,26 @@
   -moz-osx-font-smoothing: grayscale;
   color: #000000;
   background-color: #f1f3f6;
-  height: 100vh;
+  min-height: 100vh;
   padding: 15px 0;
+}
+
+//Counter styling for bootstrap vue pagination component
+.page-item {
+  margin-left: 5px;
+  margin-right: 5px;
+
+  &[role=separator]{
+    .page-link {
+      border: none;
+    }
+  }
+}
+
+//Custom fluover alert
+.alert.flyover-alert {
+  position: absolute;
+  z-index: 1;
+  right: 15px;
 }
 </style>

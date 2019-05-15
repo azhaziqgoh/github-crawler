@@ -59,18 +59,14 @@ export default {
   .search-item {
     border-top: 1px solid #ccc;
     padding: 10px 0px;
-    
+    font-size: 14px;
 
     .search-result-description {
       a {
         font-weight: bold;
         font-size: 20px;
       }
-
-      p:first-child {
-        font-size: 14px;
-      }
-
+      
       p:last-child {
         font-size: 12px;
         color: #a9a1a1;

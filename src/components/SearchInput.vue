@@ -25,7 +25,7 @@ export default {
      */
     onKeyPress(evt){
       if(evt.keyCode === 13){
-        this.$data.savedKeyword = this.$data.activeKeyword;
+        if(this.$data.activeKeyword !== '') this.$data.savedKeyword = this.$data.activeKeyword;
         this.$emit('search-keyword',this.$data.activeKeyword);
       }
     },
