@@ -8,9 +8,10 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default {
   name: 'SearchInput',
-  data(){
+  data () {
     return {
       activeKeyword: '',
       savedKeyword: ''
@@ -23,9 +24,9 @@ export default {
      * @description catch keypress event and check if it is 'Enter', if 'Enter' emit activeKeyword value to parent container and saved active keyword
      * 
      */
-    onKeyPress(evt){
-      if(evt.keyCode === 13){
-        if(this.$data.activeKeyword !== '') this.$data.savedKeyword = this.$data.activeKeyword;
+    onKeyPress(evt) {
+      if(evt.keyCode === 13) {
+        if(this.$data.activeKeyword !== '') this.$data.savedKeyword = this.$data.activeKeyword
         this.$emit('search-keyword',this.$data.activeKeyword);
       }
     },
@@ -33,7 +34,8 @@ export default {
      * @description if the active keyword not equal to save keyword, revert active keyword upon input blur
      * 
      */
-    onBlur(){
+    onBlur() {
+
        if(this.$data.activeKeyword !== this.$data.savedKeyword){
          this.$data.activeKeyword = this.$data.savedKeyword;
        } 
