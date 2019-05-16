@@ -1,5 +1,7 @@
 # github-crawler
 
+Please install vue-cli in global node modules if after npm install cannot run the code. Refer to https://cli.vuejs.org/
+
 ## Project setup
 ```
 npm install
@@ -34,6 +36,3 @@ npm run test:e2e
 ```
 npm run test:unit
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
