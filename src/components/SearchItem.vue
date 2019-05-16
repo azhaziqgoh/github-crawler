@@ -5,7 +5,7 @@
         <div class="search-result-description">
           <a href="javascript:void(0)" @click="onClickUrl(searchItemDetail.url)">{{ searchItemDetail.name }}</a>
           <p>{{ searchItemDetail.description }}</p>
-          <p>{{ searchItemDetail.updated | dateConvert }}</p>
+          <p id="search-item-date">{{ searchItemDetail.updated | dateConvert }}</p>
         </div>
       </b-col>
       <b-col md="2" sm="6">
@@ -21,6 +21,9 @@
 </template>
 
 <script>
+/* eslint-disable */
+import { dateConvert } from "@/filters/filters.js";
+
 export default {
   name: 'SearchItem',
   props: {
@@ -43,13 +46,7 @@ export default {
     }
   },
   filters: {
-    dateConvert: function(val){
-      let date = new Date(val),
-      dayArray = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-      monthArray = ['January','February','March','April','May','Jun','July','August','September','October','November','December'];
-
-      return `Updated on ${dayArray[date.getDay()]} ${monthArray[date.getMonth()]} ${date.getDate()} ${date.getFullYear()}`
-    }
+    dateConvert: dateConvert
   }
 }
 </script>
