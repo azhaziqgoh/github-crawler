@@ -1,6 +1,7 @@
 import axios from "axios";
 import { SearchResultModel } from "@/models/search-result-model.js";
 
+/* eslint-disable */
 /**
  * 
  * @param {number} currentPage current page of the pagination

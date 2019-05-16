@@ -15,7 +15,7 @@
             <search-input @search-keyword="onEmitSearchKeyword"></search-input>
           </div>
           <template v-if="totalReposCount > 0 && !showNoResult && !searching && !systemError">
-            <p class="search-result-count">{{ totalReposCount }} Search Results</p>
+            <p id="result" class="search-result-count">{{ totalReposCount }} Search Results</p>
             <div v-for="repo in repos" :key="repo.id">
               <search-item :search-item-detail="repo"></search-item>
             </div>
@@ -29,10 +29,10 @@
               @change="onPageChange"
             ></b-pagination>
           </template>
-          <p v-if="showWelcomingMessage" class="search-result-count"><i class="emoticon"><font-awesome-icon icon="hand-paper"></font-awesome-icon></i> Hi! Start searching github repositories by enter search keyword in the input box above.</p>
-          <p v-if="showNoResult && !searching && !systemError" class="search-result-count"><i class="emoticon"><font-awesome-icon icon="frown-open"></font-awesome-icon></i> Oops! No repositories found with followng '{{ searchKeyword }}' keyword. Please search again.</p>
-          <p v-if="systemError" class="search-result-count"><i class="emoticon"><font-awesome-icon icon="frown-open"></font-awesome-icon></i> Oops! System Error. Please contact administrator.</p>
-          <p v-if="searching" class="search-result-count"><i class="emoticon"><font-awesome-icon icon="search"></font-awesome-icon></i> Searching repositories with '{{ searchKeyword }}' keyword</p>
+          <p id="welcome" v-if="showWelcomingMessage" class="search-result-count"><i class="emoticon"><font-awesome-icon icon="hand-paper"></font-awesome-icon></i> Hi! Start searching github repositories by enter search keyword in the input box above.</p>
+          <p id="no-result" v-if="showNoResult && !searching && !systemError" class="search-result-count"><i class="emoticon"><font-awesome-icon icon="frown-open"></font-awesome-icon></i> Oops! No repositories found with followng '{{ searchKeyword }}' keyword. Please search again.</p>
+          <p id="system-error" v-if="systemError" class="search-result-count"><i class="emoticon"><font-awesome-icon icon="frown-open"></font-awesome-icon></i> Oops! System Error. Please contact administrator.</p>
+          <p id="searching" v-if="searching" class="search-result-count"><i class="emoticon"><font-awesome-icon icon="search"></font-awesome-icon></i> Searching repositories with '{{ searchKeyword }}' keyword</p>
         </div>
       </b-col>
     </b-row>
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 // @ is an alias to /src
 import SearchInput from '@/components/SearchInput.vue';
 import SearchItem from '@/components/SearchItem.vue';
